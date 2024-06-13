@@ -11,7 +11,12 @@ import {
   Checkbox,
 } from '@arco-design/web-react';
 import PermissionWrapper from '@/components/PermissionWrapper';
-import { IconPlus, IconStop } from '@arco-design/web-react/icon';
+import {
+  IconPlus,
+  IconStop,
+  IconCheckCircle,
+  IconDelete,
+} from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
 import SearchForm from './form';
 import locale from './locale';
@@ -26,9 +31,9 @@ function SystemUserTable() {
   const t = useLocale(locale);
 
   const [modalVisible, setModalVisible] = React.useState(false);
-  const [addForm] = Form.useForm();
-  const createSuperuser = () => {
-    const values = addForm.getFields();
+  const [userForm] = Form.useForm();
+  const createUser = () => {
+    const values = userForm.getFields();
     SystemAPI.createAccountUser(values)
       .then((res) => {
         const data = res.data;
@@ -92,7 +97,7 @@ function SystemUserTable() {
     });
   };
 
-  const handleSearch = (params) => {
+  const handleSearch = (params: any) => {
     setPatination({ ...pagination, page: 1 });
     setFormParams(params);
   };
@@ -119,8 +124,14 @@ function SystemUserTable() {
             >
               {t['systemUserTable.operations.add']}
             </Button>
+            <Button type="default" icon={<IconCheckCircle />}>
+              {t['systemUserTable.operations.use']}
+            </Button>
             <Button icon={<IconStop />}>
               {t['systemUserTable.operations.freeze']}
+            </Button>
+            <Button status="danger" icon={<IconDelete />}>
+              {t['systemUserTable.operations.delete']}
             </Button>
           </Space>
         </div>
@@ -153,14 +164,14 @@ function SystemUserTable() {
       <Modal
         title={<div style={{ textAlign: 'left' }}>新建用户</div>}
         visible={modalVisible}
-        onOk={() => createSuperuser()}
+        onOk={() => createUser()}
         onCancel={() => setModalVisible(false)}
         autoFocus={false}
         focusLock={true}
         maskClosable={false}
         escToExit={false}
       >
-        <Form form={addForm} autoComplete="off">
+        <Form form={userForm} autoComplete="off">
           <FormItem label="手机号" field="phone" rules={[{ required: true }]}>
             <Input placeholder="手机号" />
           </FormItem>

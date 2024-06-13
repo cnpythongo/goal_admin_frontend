@@ -7,6 +7,11 @@ const ACTIVE = 'ACTIVE';
 const FREEZE = 'FREEZE';
 const INACTIVE = 'INACTIVE';
 
+export const TrueFalse = [
+  { key: '1', text: '是' },
+  { key: '0', text: '否' },
+];
+
 export const Status = [
   { key: ACTIVE, text: '启用' },
   { key: FREEZE, text: '停用' },

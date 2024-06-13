@@ -12,7 +12,7 @@ import { GlobalContext } from '@/context';
 import locale from './locale';
 import useLocale from '@/utils/useLocale';
 import { IconRefresh, IconSearch } from '@arco-design/web-react/icon';
-import { Status } from './constants';
+import { Status, TrueFalse } from './constants';
 import styles from './style/index.module.less';
 
 const { Row, Col } = Grid;
@@ -28,6 +28,7 @@ function SearchForm(props: {
 
   const handleSubmit = () => {
     const values = form.getFieldsValue();
+    console.log(values);
     props.onSearch(values);
   };
 
@@ -103,6 +104,23 @@ function SearchForm(props: {
                   };
                 })}
                 mode="multiple"
+                allowClear
+              />
+            </Form.Item>
+          </Col>
+          <Col span={colSpan}>
+            <Form.Item
+              label={t['systemUserTable.columns.is_admin']}
+              field="is_admin"
+            >
+              <Select
+                placeholder={t['systemUserTable.all.placeholder']}
+                options={TrueFalse.map((item) => {
+                  return {
+                    label: item.text,
+                    value: item.key,
+                  };
+                })}
                 allowClear
               />
             </Form.Item>

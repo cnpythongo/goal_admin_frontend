@@ -14,7 +14,9 @@ const i18n = {
     'systemUserTable.columns.operations': '操作',
     'systemUserTable.columns.operations.view': '查看',
     'systemUserTable.operations.add': '新建',
-    'systemUserTable.operations.freeze': '冻结',
+    'systemUserTable.operations.freeze': '停用',
+    'systemUserTable.operations.use': '启用',
+    'systemUserTable.operations.delete': '删除',
   },
 };
 

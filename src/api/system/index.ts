@@ -1,7 +1,7 @@
 import axios from '../axios';
 
 export default {
-  getSystemUserList(params: any) {
+  getAccountUserList(params: any) {
     return axios.get(`/account/user/list`, params);
   },
   createAccountUser(data: any) {
